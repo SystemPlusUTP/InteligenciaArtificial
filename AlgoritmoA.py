@@ -1,11 +1,12 @@
 import pygame 
+from lab import *
 
 ANCHO = 500
 BLANCO = (255,255,255)
 ROJO = (255, 0, 0)
 AZUL = (0,0,255)
 VERDE = (0,255,0)
-
+LOCO = (100,100,100)
 
 
 if __name__ == '__main__':
@@ -15,6 +16,8 @@ if __name__ == '__main__':
 	an_cua = ANCHO/10
 	x = -100
 	y = -100
+	salida = [-100, -100]
+	empieza = [-100, -100]
 	mapa = []
 	for i in range(10):
 		s = []
@@ -36,9 +39,11 @@ if __name__ == '__main__':
 					if event.key == pygame.K_b:
 						mapa[int(y/an_cua)][int(x/an_cua)] = 1
 					if event.key == pygame.K_e:
-						mapa[int(y/an_cua)][int(x/an_cua)] = 2
+						empieza = [int(x/an_cua),int(y/an_cua)]
 					if event.key == pygame.K_s:
-						mapa[int(y/an_cua)][int(x/an_cua)] = 3
+						salida = [int(x/an_cua),int(y/an_cua)]
+				if event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
+					validacion = False
 				x,y = -100,-100
 
 		pantalla.fill(BLANCO)
@@ -49,9 +54,19 @@ if __name__ == '__main__':
 			for j in range(10):
 				if mapa[i][j] == 1:
 					pygame.draw.rect(pantalla, AZUL, [j*an_cua, i*an_cua, an_cua, an_cua])
-				if mapa[i][j] == 2:
-					pygame.draw.rect(pantalla, VERDE, [j*an_cua, i*an_cua, an_cua, an_cua])
-				if mapa[i][j] == 3:
-					pygame.draw.rect(pantalla, ROJO, [j*an_cua, i*an_cua, an_cua, an_cua])
+				pygame.draw.rect(pantalla, VERDE, [empieza[0]*an_cua, empieza[1]*an_cua, an_cua, an_cua])
+				pygame.draw.rect(pantalla, ROJO, [salida[0]*an_cua, salida[1]*an_cua, an_cua, an_cua])
 		pygame.display.flip()
 		reloj.tick(60)
+
+	camino = Aestrella(mapa,empieza[0],empieza[1], salida)
+	for elem in camino:
+		pygame.draw.rect(pantalla, LOCO, [elem[0]*an_cua, elem[1]*an_cua, an_cua, an_cua])
+	pygame.display.flip()
+	validacion = True
+	while validacion:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				validacion = False
+			if event.type == pygame.KEYDOWN:
+				validacion = False
