@@ -29,7 +29,6 @@ def expandir(mapa,nodo):
 			c = Celda(nodo.i,nodo.j-1,nodo.costo+1)
 			c.padres = copy.deepcopy(nodo.get_padres())
 			c.padres.append([nodo.i,nodo.j])
-			#print(c.get_padres())
 			hijos.append([c,c.costo+manhatan(c.i,c.j)])
 
 	if nodo.i + 1 <= len(mapa)-1:
@@ -37,7 +36,6 @@ def expandir(mapa,nodo):
 			c = Celda(nodo.i+1,nodo.j,nodo.costo+1)
 			c.padres = copy.deepcopy(nodo.get_padres())
 			c.padres.append([nodo.i,nodo.j])
-			#print(c.get_padres())
 			hijos.append([c,c.costo+manhatan(c.i,c.j)])
 	
 	if nodo.j + 1 <= len(mapa[nodo.i])-1:
@@ -45,7 +43,6 @@ def expandir(mapa,nodo):
 			c = Celda(nodo.i,nodo.j+1,nodo.costo+1)
 			c.padres = copy.deepcopy(nodo.get_padres())
 			c.padres.append([nodo.i,nodo.j])
-			#print(c.get_padres())
 			hijos.append([c,c.costo+manhatan(c.i,c.j)])
 
 	if nodo.i - 1 >= 0:
@@ -53,7 +50,6 @@ def expandir(mapa,nodo):
 			c = Celda(nodo.i-1,nodo.j,nodo.costo+1)
 			c.padres = copy.deepcopy(nodo.get_padres())
 			c.padres.append([nodo.i,nodo.j])
-			#print(c.get_padres())
 			hijos.append([c,c.costo+manhatan(c.i,c.j)])
 
 	return hijos 
@@ -65,7 +61,7 @@ def Aestrella(mapa,x,y, s):
 	front = PriorityQueue()
 	exp = []
 	c = Celda(x,y,0)
-	front.insert(c,0)
+	front.insert(c,manhatan(x,y))
 	while front.size() != 0:
 		ps = front.pop()
 		if is_solution(ps[0].i,ps[0].j):
@@ -78,7 +74,7 @@ def Aestrella(mapa,x,y, s):
 				if not [elem[0].i,elem[0].j] in exp:
 					front.insert(elem[0],elem[1])
 
-	return 'Marica no encontre solucion'
+	return 'no encontre solucion'
 
 if __name__ == '__main__':
 			#	0 1 2 3 4 5 6 7 8 9
