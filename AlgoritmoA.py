@@ -22,10 +22,10 @@ class InterfasInicio(pygame.sprite.Sprite):
 	def __init__(self, p):
 		self.p = p
 		p.fill(BLANCO)
-		p.blit(self.Texto1, (210, 100))
-		p.blit(self.Texto2, (250, 200))
-		p.blit(self.Texto3, (250, 250))
-		p.blit(self.Selector, (219,self.y))
+		p.blit(self.Texto1, (160, 100))
+		p.blit(self.Texto2, (200, 200))
+		p.blit(self.Texto3, (200, 250))
+		p.blit(self.Selector, (169,self.y))
 		pygame.display.flip()
 
 	def mov(self, y):
@@ -38,12 +38,11 @@ class InterfasInicio(pygame.sprite.Sprite):
 
 	def update(self):
 		self.p.fill(BLANCO)
-		self.p.blit(self.Texto1, (210, 100))
-		self.p.blit(self.Texto2, (250, 200))
-		self.p.blit(self.Texto3, (250, 250))
-		self.p.blit(self.Selector, (219,self.y))
+		self.p.blit(self.Texto1, (160, 100))
+		self.p.blit(self.Texto2, (200, 200))
+		self.p.blit(self.Texto3, (200, 250))
+		self.p.blit(self.Selector, (169,self.y))
 		pygame.display.flip()
-
 
 if __name__ == '__main__':
 	pygame.init()
