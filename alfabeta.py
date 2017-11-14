@@ -137,7 +137,6 @@ if __name__ == '__main__':
 					simbolo = fuente.render('o',True,ROJO)
 					pantalla.blit(simbolo,[(int(pos[0]/100)*100)+20,(int(pos[1]/100)*100)])
 					jugador = 1
-		else:
 			
 		'''
 		pantalla.fill(BLANCO)
