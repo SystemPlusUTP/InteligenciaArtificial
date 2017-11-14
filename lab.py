@@ -87,7 +87,7 @@ def Aestrella(mapa,x,y,s):
 					front.insert(elem[0],elem[1])
 
 	print("tiempo: ",time.time() - t0)
-	return 'No se encontro solucion'
+	return 'no encontre solucion'
 '''
 if __name__ == '__main__':
 			#	0 1 2 3 4 5 6 7 8 9
